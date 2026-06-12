@@ -24,6 +24,8 @@ module "ec2_primary" {
   subnet_id         = module.vpc_primary.public_subnet_id
   security_group_id = module.vpc_primary.security_group_id
   key_name          = var.key_name
+  s3_bucket         = module.s3.primary_bucket_name
+  aws_region        = var.primary_region
 
   providers = {
     aws = aws.primary
@@ -50,12 +52,14 @@ module "ec2_standby" {
   source = "./modules/ec2"
 
   project_name      = var.project_name
-  environment        = var.environment
+  environment       = var.environment
   region_role       = "standby"
   instance_type     = var.instance_type
   subnet_id         = module.vpc_standby.public_subnet_id
   security_group_id = module.vpc_standby.security_group_id
   key_name          = var.key_name
+  s3_bucket         = module.s3.standby_bucket_name
+  aws_region        = var.standby_region
 
   providers = {
     aws = aws.standby
