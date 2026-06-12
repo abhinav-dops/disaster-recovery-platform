@@ -39,3 +39,13 @@ variable "ami_id" {
   type        = string
   default     = ""
 }
+
+variable "s3_bucket" {
+  description = "S3 bucket name for this region's app instance to write to"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "AWS region this instance runs in (for AWS SDK)"
+  type        = string
+}
